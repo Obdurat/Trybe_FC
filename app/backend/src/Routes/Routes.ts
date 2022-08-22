@@ -5,7 +5,6 @@ const endpoints: Router = Router();
 
 const controller = new UserController();
 
-endpoints.route('/login')
-  .post(controller.login);
+endpoints.post('/login', controller.login);
 
 export default endpoints;
