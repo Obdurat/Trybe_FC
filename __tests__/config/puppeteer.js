@@ -7,7 +7,7 @@ const initBrowser = async () => {
   const browser = await puppeteer.launch({
     product: "chrome",
     executablePath,
-    args: [
+    args: [   
       '--no-sandbox',
       '--disable-gpu',
       '--disable-software-rasterizer',
