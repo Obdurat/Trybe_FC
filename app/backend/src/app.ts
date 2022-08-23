@@ -1,4 +1,5 @@
 import * as express from 'express';
+import * as cors from 'cors';
 import endpoints from './Routes/Routes';
 import errorHandler from './Middlewares/ErrorHandler';
 
@@ -22,6 +23,7 @@ class App {
       next();
     };
 
+    this.app.use(cors({ origin: '*' }));
     this.app.use(express.json());
     this.app.use(endpoints);
     this.app.use(errorHandler);

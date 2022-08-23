@@ -10,4 +10,9 @@ export default class UserController {
     const token = await this._service.login(email, password);
     return res.status(200).json({ token });
   });
+
+  role = ControllerWrapper(async (req, res) => {
+    const role = await this._service.getRole(req.headers.authorization);
+    return res.status(200).json({ role });
+  });
 }
