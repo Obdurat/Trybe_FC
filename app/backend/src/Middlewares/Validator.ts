@@ -1,6 +1,5 @@
 import { AnySchema } from 'joi';
 import { Request, Response, NextFunction } from 'express';
-import * as Joi from 'joi';
 
 class Validator {
   constructor(private schema: AnySchema) {
@@ -15,16 +14,4 @@ class Validator {
   }
 }
 
-const shcema = Joi.object({
-  email: Joi.string().email().required()
-    .messages({
-      'string.empty': 'All fields must be filled',
-      'string.email': 'Email must be valid',
-    }),
-  password: Joi.string().required()
-    .messages({ 'string.empty': 'All fields must be filled' }),
-});
-
-const LoginValid = new Validator(shcema);
-
-export default LoginValid;
+export default Validator;
