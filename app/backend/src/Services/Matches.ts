@@ -35,4 +35,10 @@ export default class MatchesService {
     await match?.update(goals);
     return match;
   }
+
+  async finishedMatches(teamId: number, matchPlace: string) {
+    const matches = await this.model.findAll({
+      where: { [matchPlace]: teamId, inProgress: false }, raw: true });
+    return matches;
+  }
 }
