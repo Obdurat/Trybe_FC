@@ -73,6 +73,6 @@ const order = (board: any[]) => board.sort((a: any, b: any): any => {
 });
 
 const leaderboard = async (place: string[]) => teamMatches(place)
-  .then((result) => result.map((e) => points(e, place))).then((final) => order(final));
+  .then((result) => result.map((e: any) => points(e, place))).then((final) => order(final));
 
 export default leaderboard;
