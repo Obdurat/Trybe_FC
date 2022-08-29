@@ -1,3 +1,9 @@
+import { ModelDefined, Model, ModelAttributes } from 'sequelize';
+
+type updtAttr<T> = {
+  [P in keyof T]?: T[P]
+};
+
 interface UserAttributes {
   id: number;
   username: string;
@@ -7,12 +13,12 @@ interface UserAttributes {
 }
 
 interface MatchesAttributes {
-  id: number;
+  id?: number;
   homeTeam: number;
   homeTeamGoals: number;
   awayTeam: number;
   awayTeamGoals: number;
-  inProgress: number;
+  inProgress?: number;
 }
 
 interface TeamsAttributes {
@@ -20,4 +26,21 @@ interface TeamsAttributes {
   teamName: string;
 }
 
-export { UserAttributes, TeamsAttributes, MatchesAttributes };
+type Return<T> = Model<T, T>;
+
+type ModelOk<T> = ModelDefined<T, T>;
+
+interface RepoFactory {
+  usersModel: ModelOk<UserAttributes>
+  matchesModel: ModelOk<MatchesAttributes>
+  teamsModel: ModelOk<TeamsAttributes>
+}
+
+export { UserAttributes,
+  TeamsAttributes,
+  MatchesAttributes,
+  ModelOk,
+  Return,
+  RepoFactory,
+  ModelAttributes,
+  updtAttr };
