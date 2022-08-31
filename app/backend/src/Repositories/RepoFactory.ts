@@ -15,7 +15,7 @@ type RepoDefined = {
   _MatchesRepo: BaseRepository<MatchesAttributes>;
 };
 
-class RepoFactory {
+class RepoFactory implements RepoDefined {
   [index: string]: BaseRepository<unknown>;
   _UserRepo: BaseRepository<UserAttributes>;
   _TeamsRepo: BaseRepository<TeamsAttributes>;

@@ -1,18 +1,21 @@
 import { Request, Response } from 'express';
-import UserService from '../Services/User';
 import ControllerWrapper from '../Utils/ControllerWrapper';
+import CasesFactory from '../UseCases';
 
 export default class UserController {
-  private _service = new UserService();
+  private _useCase: typeof CasesFactory.users;
+
+  constructor(useCase: typeof CasesFactory) {
+    this._useCase = useCase.users;
+  }
 
   login = ControllerWrapper(async (req: Request, res: Response) => {
-    const { email, password } = req.body;
-    const token = await this._service.login(email, password);
+    const token = await this._useCase.login(req.body);
     return res.status(200).json({ token });
   });
 
   role = ControllerWrapper(async (req, res) => {
-    const role = await this._service.getRole(req.headers.authorization);
+    const role = await this._useCase.getRole(req.headers.authorization);
     return res.status(200).json({ role });
   });
 }

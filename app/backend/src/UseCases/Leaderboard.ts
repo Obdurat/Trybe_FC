@@ -15,7 +15,7 @@ export default class LeaderboardCases {
     this._calculator = calculator;
   }
 
-  async brdCreate(): Promise<BrdElement[]> {
+  private async brdCreate(): Promise<BrdElement[]> {
     const teams = await this._teamsRepository.getAll();
     console.log(teams);
     return teams.map((team) => ({
