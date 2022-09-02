@@ -1,8 +1,8 @@
 import { FindAttributeOptions, WhereOptions, IncludeOptions, QueryOptions } from 'sequelize';
-import { ModelOk, Return, updtAttr } from './Types';
+import { ModelOk, Return, updtAttr, Junction } from './Types';
 import CustomError from '../Errors/CustomError';
 
-export default class BaseRepository<T> {
+export default class BaseRepository<T extends Junction> {
   private _model: ModelOk<T>;
 
   constructor(model: ModelOk<T>) {

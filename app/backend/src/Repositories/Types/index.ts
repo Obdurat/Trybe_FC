@@ -4,6 +4,8 @@ type updtAttr<T> = {
   [P in keyof T]?: T[P]
 };
 
+type Junction = UserAttributes | MatchesAttributes | TeamsAttributes;
+
 interface UserAttributes {
   id: number;
   username: string;
@@ -26,7 +28,7 @@ interface TeamsAttributes {
   teamName: string;
 }
 
-type Return<T> = Model<T, T>;
+type Return<T extends Junction> = Model<T, T>;
 
 type ModelOk<T> = ModelDefined<T, T>;
 
@@ -43,4 +45,5 @@ export { UserAttributes,
   Return,
   RepoFactory,
   ModelAttributes,
-  updtAttr };
+  updtAttr,
+  Junction };
